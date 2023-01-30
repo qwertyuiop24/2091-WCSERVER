@@ -16,19 +16,18 @@ var sss = 1200;
 var pagibig = 300;
 var philhealth = 400;
 
-//To calculate/solve the problem
-var gpay = calcu.multiply(rate, hours);
-var gpay2 = calcu.multiply(gpay, days);
-var tax1 = calcu.multiply(gpay2, tax);
+//to calculate/solve the problem
+var gpay = calcu.multi_three(rate, hours, days);
+var tax1 = calcu.multiply(gpay, tax);
 var deduct = calcu.add(tax1, sss);
 var deduct2 = calcu.add(pagibig, philhealth);
 var deduct3 = calcu.add(deduct, deduct2);
 
-//Print the output
-console.log('The Gross Income: ' + gpay2);
+//print the output
+console.log('The Gross Income: ' + gpay);
 console.log('Tax: ' + tax1);
 console.log('SSS: ' + sss);
 console.log('Pag-Ibig Fund: ' + pagibig);
 console.log('PhilHealth: ' + philhealth);
 console.log('Total Deductions: ' + deduct3);
-console.log('The Net Salary: ' + calcu.subtract(gpay2, deduct3));
+console.log('The Net Salary: ' + calcu.subtract(gpay, deduct3));
