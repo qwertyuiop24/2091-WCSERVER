@@ -12,13 +12,13 @@ app.use(express.static('public'));
 //create the route to serve a static index.html
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/' + 'index.html');
-    throw new Error('Error 404');
+  res.sendFile(__dirname + '/' + 'index.html');
+  throw new Error('Error 404');
 });
 
 //Setting the listener to ENV PORT info
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`listening on port ${port}`)
+  console.log(`listening on port ${port}`);
 });

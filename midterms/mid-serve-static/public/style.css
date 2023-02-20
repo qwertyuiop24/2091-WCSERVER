@@ -1,76 +1,75 @@
-body {
-  background-color: cadetblue;
+body{
+    background-color: cadetblue;
 }
 
 h1 {
-  color: red;
-  font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-h2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.6em;
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6em;
 }
 
 p {
-  margin: auto;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  text-indent: 2em;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: justify;
+    margin: auto;
+    margin-left: .5em;
+    margin-right: .5em;
+    text-indent: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
 }
 
 img {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 30%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 30%;
 }
 /* The navigation menu */
 .navbar {
-  overflow: hidden;
-  background-color: #333;
-}
-
-/* Navigation links */
-.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* The subnavigation menu */
-.subnav {
-  float: left;
-  overflow: hidden;
-}
-
-/* Add a red background color to navigation links on hover */
-.navbar a:hover,
-.subnav:hover .subnavbtn {
-  background-color: yellowgreen;
-}
-
-/* Style the subnav links */
-.subnav-content a {
-  float: left;
-  color: white;
-  text-decoration: none;
-}
-
-/* Add a grey background color on hover */
-.subnav-content a:hover {
-  background-color: #eee;
-  color: black;
-}
-
-/* When you move the mouse over the subnav container, open the subnav content */
-.subnav:hover .subnav-content {
-  display: block;
-}
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  /* Navigation links */
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* The subnavigation menu */
+  .subnav {
+    float: left;
+    overflow: hidden;
+  }
+  
+  /* Add a red background color to navigation links on hover */
+  .navbar a:hover, .subnav:hover .subnavbtn {
+    background-color: yellowgreen;
+  }
+  
+  /* Style the subnav links */
+  .subnav-content a {
+    float: left;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Add a grey background color on hover */
+  .subnav-content a:hover {
+    background-color: #eee;
+    color: black;
+  }
+  
+  /* When you move the mouse over the subnav container, open the subnav content */
+  .subnav:hover .subnav-content {
+    display: block;
+  }
