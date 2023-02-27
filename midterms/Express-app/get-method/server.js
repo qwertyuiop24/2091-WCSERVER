@@ -12,7 +12,7 @@ app.get('/process_get', function (req, res) {
   };
 
   console.log(response);
-  res.end(JSON.stringify(respose));
+  res.end(JSON.stringify(response));
 });
 
 //Setting the listener to ENV PORT info
