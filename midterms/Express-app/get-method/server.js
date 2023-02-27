@@ -7,8 +7,8 @@ app.get('/', function (req, res) {
 
 app.get('/process_get', function (req, res) {
   response = {
-    first_name: req.query.first_name,
-    last_name: req.query.last_name,
+    first_name:req.query.first_name,
+    last_name:req.query.last_name
   };
 
   console.log(response);
@@ -17,7 +17,6 @@ app.get('/process_get', function (req, res) {
 
 //Setting the listener to ENV PORT info
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+app.listen(3000, function(){
+  console.log('Server is running at http://localhost:3000');
 });
