@@ -14,3 +14,10 @@ app.get('/process_get', function (req, res) {
   console.log(response);
   res.end(JSON.stringify(respose));
 });
+
+//Setting the listener to ENV PORT info
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});

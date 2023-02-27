@@ -19,3 +19,10 @@ app.post('/process_post', urlencodedParser, function (req, res) {
   console.log(response);
   res.end(JSON.stringify(response));
 });
+
+//Setting the listener to ENV PORT info
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+});
