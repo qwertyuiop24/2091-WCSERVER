@@ -18,15 +18,15 @@ const multer = require('multer');
 
 //use multer to support file upload feature
 const fileStorage = multer.diskStorage({
-    destination: function (req, file, cb){
-        cb(null, 'uploads/'); //specify destination directory 
-    },
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    },
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); //specify destination directory
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
 });
 
-const upload = multer({storage: fileStorage});
+const upload = multer({ storage: fileStorage });
 
 //4. Use the middleware required for serving static files
 
@@ -35,36 +35,34 @@ app.use(express.static('public'));
 //create the route to serve a static index.html
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/' + 'index.html');
-    throw new Error('Error 404');
+  res.sendFile(__dirname + '/' + 'index.html');
+  throw new Error('Error 404');
 });
 
 app.post('/process_post', urlencodedParser, function (req, res) {
-    response = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-    };
-    console.log(response);
-    res.end(JSON.stringify(response));
-  });
+  response = {
+    name: req.body.name,
+  };
+  console.log(response);
+  res.end(JSON.stringify(response));
+});
 
 //file upload route
 app.post('/uploads', upload.single('myFile'), (req, res) => {
-    console.log(req.file);
+  console.log(req.file);
 
-    req.file.mimetype = mime.lookup(req.file.originalname);
+  req.file.mimetype = mime.lookup(req.file.originalname);
 
-    res.sendFile(path.join(__dirname, 'file-uploaded.html'));
+  res.sendFile(path.join(__dirname, 'file-uploaded.html'));
 });
 
 app.get('/file-upload', (req, res) => {
-    res.sendFile(__dirname + '/' + 'file-upload.html')
+  res.sendFile(__dirname + '/' + 'file-upload.html');
 });
-
 
 //Setting the listener to ENV PORT info
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`listening on port ${port}`)
+  console.log(`listening on port ${port}`);
 });
