@@ -1,25 +1,15 @@
-//1. Installing Express
-//2. Install libraries/dependencies
-//3. Require statements
+var express = require('express');
+var app = express();
 
-const express = require('express');
-const app = express();
+app.use(express.static('public'));
 
-//require body-parser for this method
-var bodyParser = require('body-parser');
-
-//Create application/x-www-form-urlencoded paser
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
-//import statements for path, mimetype, and multer
 const path = require('path');
 const mime = require('mime-types');
 const multer = require('multer');
 
-//use multer to support file upload feature
 const fileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); //specify destination directory
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -28,29 +18,6 @@ const fileStorage = multer.diskStorage({
 
 const upload = multer({ storage: fileStorage });
 
-//4. Use the middleware required for serving static files
-
-app.use(express.static('public'));
-
-//create the route to serve a static index.html
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/' + 'index.html');
-  throw new Error('Error 404');
-});
-
-app.post('/process_post', urlencodedParser, function (req, res) {
-  response = {
-    name: req.body.name,
-    Subject: req.body.Subject,
-    Message: req.body.Message,
-    Email: req.body.Email,
-  };
-  console.log(response);
-  res.end(JSON.stringify(response));
-});
-
-//file upload route
 app.post('/uploads', upload.single('myFile'), (req, res) => {
   console.log(req.file);
 
@@ -60,12 +27,26 @@ app.post('/uploads', upload.single('myFile'), (req, res) => {
 });
 
 app.get('/file-upload', (req, res) => {
-  res.sendFile(__dirname + '/' + 'file-upload.html');
+  res.sendFile(__dirname + '/' + 'file-uploaded.html');
 });
 
-//Setting the listener to ENV PORT info
+app.get('/get_process.html', function (req, res) {
+  res.sendFile(__dirname + '/' + 'get_process.html');
+});
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+app.get('/process_get', function (req, res) {
+  // Prepare output in JSON format
+  response = {
+    first_name: req.query.first_name,
+    last_name: req.query.last_name,
+  };
+  console.log(response);
+  res.end(JSON.stringify(response));
+});
+
+var server = app.listen(8081, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
 });
