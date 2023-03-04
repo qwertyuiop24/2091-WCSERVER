@@ -1,22 +1,43 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+
+var bodyParser = require('body-parser');
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static('public'));
 
 const path = require('path');
 const mime = require('mime-types');
 const multer = require('multer');
+const { maxHeaderSize } = require('http');
 
 const fileStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/');
   },
+
   filename: function (req, file, cb) {
     cb(null, file.originalname);
   },
 });
 
-const upload = multer({ storage: fileStorage });
+const upload = multer({
+  storage: fileStorage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == 'image/png' ||
+      file.mimetype == 'image/jpg' ||
+      file.mimetype == 'image/jpeg' ||
+      file.mimetype == 'image/jiff'
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      cb(new Error('Image format only is accepted.'));
+    }
+  },
+});
 
 app.post('/uploads', upload.single('myFile'), (req, res) => {
   console.log(req.file);
@@ -26,22 +47,14 @@ app.post('/uploads', upload.single('myFile'), (req, res) => {
   res.sendFile(path.join(__dirname, 'file-uploaded.html'));
 });
 
-app.get('/file-upload', (req, res) => {
-  res.sendFile(__dirname + '/' + 'file-uploaded.html');
-});
-
-app.get('/get_process.html', function (req, res) {
-  res.sendFile(__dirname + '/' + 'get_process.html');
-});
-
-app.get('/process_get', function (req, res) {
-  // Prepare output in JSON format
+app.post('/process_post', urlencodedParser, function (req, res) {
   response = {
     name: req.query.name,
     sub_ject: req.query.sub_ject,
     mes_sage: req.query.mes_sage,
     em_ail: req.query.em_ail,
   };
+
   console.log(response);
   res.end(JSON.stringify(response));
 });
