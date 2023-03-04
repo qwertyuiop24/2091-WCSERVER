@@ -42,6 +42,9 @@ app.get('/', (req, res) => {
 app.post('/process_post', urlencodedParser, function (req, res) {
   response = {
     name: req.body.name,
+    Subject: req.body.Subject,
+    Message: req.body.Message,
+    Email: req.body.Email,
   };
   console.log(response);
   res.end(JSON.stringify(response));
