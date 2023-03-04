@@ -16,22 +16,6 @@ const fileStorage = multer.diskStorage({
   },
 });
 
-const checkFileType = function (file, cb) {
-      //Allowed file extensions
-      const fileTypes = /jpeg|jpg|png|gif|svg/;
-
- //check extension names
-  const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-
-  const mimeType = fileTypes.test(file.mimetype);
-
-  if (mimeType && extName) {
-    return cb(null, true);
-  } else {
-    cb("Error: You can Only Upload Images!!");
-  }
-};
-
 const upload = multer({ storage: fileStorage });
 
 app.post('/uploads', upload.single('myFile'), (req, res) => {
@@ -64,6 +48,6 @@ app.get('/process_get', function (req, res) {
 
 //Setting the listener to ENV PORT info
 
-app.listen(3000, function(){
-    console.log('Server is running at http://localhost:3000');
-  });
+app.listen(3000, function () {
+  console.log('Server is running at http://localhost:3000');
+});
