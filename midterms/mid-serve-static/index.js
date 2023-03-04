@@ -48,7 +48,11 @@ app.post('/uploads', upload.single('myFile'), (req, res) => {
   res.sendFile(path.join(__dirname, 'file-uploaded.html'));
 });
 
-app.post('/process_post', urlencodedParser, function (req, res) {
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + '/' + 'contact.html');
+});
+
+app.get('/process_get', urlencodedParser, function (req, res) {
   response = {
     name: req.query.name,
     sub_ject: req.query.sub_ject,
