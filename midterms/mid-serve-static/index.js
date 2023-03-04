@@ -37,8 +37,10 @@ app.get('/get_process.html', function (req, res) {
 app.get('/process_get', function (req, res) {
   // Prepare output in JSON format
   response = {
-    first_name: req.query.first_name,
-    last_name: req.query.last_name,
+    name: req.query.name,
+    sub_ject: req.query.sub_ject,
+    mes_sage: req.query.mes_sage,
+    em_ail: req.query.em_ail,
   };
   console.log(response);
   res.end(JSON.stringify(response));
