@@ -22,8 +22,8 @@ app.get('/api/movies', (req, res) => {
 });
 
 //get movie by title
-app.get('/api/movies/:title', (req, res) => {
-    const movie = movies.find(h => h.title === parseInt(req.params.title));
+app.get('/api/movies/:id', (req, res) => {
+    const movie = movies.find(h => h.id === parseInt(req.params.id));
     if (!movie) return res.status(404).send('The movie with the given ID was not found.'); res.send(movie); 
 });
 
