@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
 
-//serve static file
+// set the view engine to Pug
+app.set('view engine', 'pug');
+
+// serve static files
 app.use(express.static('public'));
 
-app.set('view engine', 'ejs');
-
+// render the index page
 app.get('/', (req, res) => {
-  res.render('index', { title: 'My EJS App' });
+  res.render('index', { title: 'My Pug App' });
 });
 
+// start the server
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
