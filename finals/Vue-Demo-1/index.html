@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Insert here the link to the CDN Vue package -->
+        <script src="https://unpkg.com/vue@3.0.2"></script>
+        <title>Vue JS Demo Application</title> 
+    </head>
+    <body>
+    <!-- Create a div tag with "app" ID --> <div id="app">
+            <p>{{ title }} - {{ author }} - {{ age }}</p>
+            <!-- Events on Vue using v-on -->
+            <button v-on:click="age++">Get Older</button>
+            <button v-on:click="age--">Get Younger</button>
+            <button @click="title = 'The title has changed.'">Change Title</button>
+            </div>
+            <!-- this won't be controlled by Vue -->
+            {{ age }}
+
+            <!-- Two-way data binding -->
+        <div id="two-way-binding"> 
+            <p>{{ message }}</p> <input v-model="message" />
+        </div>
+        
+        <!-- USING V-IF -->
+        <div id = "conditional-rendering">
+        <span v-if = "seen">NOW YOU SEE ME</span>
+        </div>
+
+        <!-- THIS IS HOOKED UP TO A METHOD IN THE BOOK.JS -->
+        <div id = "books">
+        <div v-if = "showBooks">
+        <p> {{ btitle }} - {{ bauthor }} - {{ year }}</p>
+        </div>
+
+        <button @click = "toggleShowBooks">
+            <span v-if = "showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+            </button>
+            </div>
+
+            <h1 v-show = "ok">Hello!</h1>
+
+            <!-- USINT V-FOR DIRECTIVE -->
+            <div id = "list-rendering">
+            <ol>
+            <li v-for = "todo in todos">
+            {{ todo.text }}
+            </li>
+            </ol>
+            </div>
+    
+    
+    
+    </div>
+    <!-- Insert the below code to link to app.js --> <script src="app.js"></script>
+    <!-- link to twoway.js --> <script src="two-way.js"></script>
+    <script src = "conditionalif.js"></script>
+    <script src = "books.js"></script>
+    <script src = "listfor.js"></script>
+</body>
+</html>
